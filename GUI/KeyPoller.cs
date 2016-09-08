@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class KeyPoller : MonoBehaviour
+public class KeyPoller 
 {
     private bool isPaused = false;
     private bool chatOpen = true;
@@ -64,8 +64,7 @@ public class KeyPoller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            Debug.Log("LOADING!");
-            GameObject obj = (GameObject)Instantiate(Resources.Load("Goblins/GoblinA"));
+            GameObject obj = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Goblins/GoblinA"));
             obj.transform.position = Camera.main.transform.position;
             Debug.Log(obj.GetType());
         }
@@ -100,6 +99,8 @@ public class KeyPoller : MonoBehaviour
         pollMenuKeys();
         pollHeldItemKeys();
     }
+
+
 
     public void pollHeldItemKeys()
     {

@@ -2,7 +2,10 @@
 using System.Collections;
 using System;
 
-public abstract class SentientEntity : LivingEntity, ConversableEntity
+namespace StarColony
 {
-    public abstract void talkTo(); 
+    public abstract class SentientEntity : LivingEntity, ConversableEntity
+    {
+        public abstract void talkTo();
+    }
 }

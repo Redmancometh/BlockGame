@@ -2,15 +2,20 @@
 using System.Collections;
 using System;
 
-public class LivingEntity : Entity
+namespace StarColony
 {
-    public string getName()
+    public class LivingEntity : Entity
     {
-        throw new NotImplementedException();
-    }
+        public override string getName()
+        {
+            throw new NotImplementedException();
+        }
 
-    public void onCollideWithEntity(Entity e)
-    {
-        throw new NotImplementedException();
+        public override void onCollideWithEntity(Entity e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+
+

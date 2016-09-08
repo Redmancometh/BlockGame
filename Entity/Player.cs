@@ -3,13 +3,13 @@ using System.Collections;
 using System;
 using StarColony;
 
-public class Player : MonoBehaviour, Entity
+public class Player : SentientEntity
 {
     public PlayerInventory inventory { get; set; }
     public PlayerGUIManager gui { get; set; }
     private string playerName = "Redmancometh";
     private KeyPoller poller = new KeyPoller();
-    string getName()
+    override public string getName()
     {
         return playerName;
     }
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, Entity
 
     public void setName(string name)
     {
-        this.name = name;
+        this.playerName = name;
     }
 
     public void Start()
@@ -51,13 +51,13 @@ public class Player : MonoBehaviour, Entity
         return playerName;
     }
 
-    string Entity.getName()
-    {
-        return playerName;
-    }
-
-    public void onCollideWithEntity(Entity e)
+    override public void onCollideWithEntity(Entity e)
     {
         Debug.Log("Collided with "+e.getName());
+    }
+
+    public override void talkTo()
+    {
+        throw new NotImplementedException();
     }
 }

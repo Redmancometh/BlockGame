@@ -2,10 +2,13 @@
 using System.Collections;
 using System;
 
-public class Monster : SentientEntity
+namespace StarColony
 {
-    public override void talkTo()
+    public class Monster : SentientEntity
     {
-        
+        public override void talkTo()
+        {
+
+        }
     }
 }

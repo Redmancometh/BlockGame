@@ -33,15 +33,18 @@ public class VoxelManager
     public void swapMesh(GameObject hitObject)
     {
         if (hitObject.GetComponent<ChunkExtension>() != null)
-        { // if we hit a mesh container instead of a chunk
-            hitObject = hitObject.transform.parent.gameObject; // swap the mesh container for the actual chunk object
+        { 
+            // if we hit a mesh container instead of a chunk
+            // swap the mesh container for the actual chunk object
+            hitObject = hitObject.transform.parent.gameObject; 
         }
     }
 
     public VoxelInfo getVoxelInfo(RaycastHit hit, float range, bool ignoreTransparent)
     {
         if (raycastHasVoxel(hit))
-        { // check if we're actually hitting a chunk
+        { 
+            // check if we're actually hitting a chunk
             GameObject hitObject = hit.collider.gameObject;
             if (hitObject.GetComponent<ChunkExtension>() != null)
             { // if we hit a mesh container instead of a chunk

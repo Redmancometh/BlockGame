@@ -4,7 +4,12 @@ using System;
 
 public class LivingEntity : Entity
 {
-    string Entity.getName()
+    public string getName()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onCollideWithEntity(Entity e)
     {
         throw new NotImplementedException();
     }

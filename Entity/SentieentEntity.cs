@@ -4,5 +4,5 @@ using System;
 
 public abstract class SentientEntity : LivingEntity, ConversableEntity
 {
-    public abstract void talkTo();
+    public abstract void talkTo(); 
 }

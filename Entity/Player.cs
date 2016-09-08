@@ -55,4 +55,9 @@ public class Player : MonoBehaviour, Entity
     {
         return playerName;
     }
+
+    public void onCollideWithEntity(Entity e)
+    {
+        Debug.Log("Collided with "+e.getName());
+    }
 }

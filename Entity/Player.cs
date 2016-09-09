@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using StarColony;
+using Colonist;
 
 public class Player : SentientEntity
 {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 // sends VoxelEvents such as OnLook, OnMouseDown, etc.
 
-namespace StarColony
+namespace Colonist
 {
 
     public class CameraEventsSender : MonoBehaviour
@@ -40,7 +40,7 @@ namespace StarColony
         { // cursor position
             KeyValuePair<bool, RaycastHit> hitInfo = RaycastUtil.AABB(Camera.main.ScreenPointToRay(Input.mousePosition), 2F);
             //Vector3 pos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 10.0f);
-            VoxelInfo raycast = null;
+            BlockInfo raycast = null;
             if (MasterEngine.getInstance().getVoxelEngine().raycastHasVoxel(hitInfo.Value))
             {
                 raycast = MasterEngine.getInstance().getVoxelEngine().getVoxelInfo(hitInfo.Value, 2F, false);
@@ -95,7 +95,7 @@ namespace StarColony
         { // first person camera
             var cam = Camera.main.transform;
             KeyValuePair<bool, RaycastHit> hitInfo = RaycastUtil.AABB(new Ray(cam.position, cam.forward), 3F);
-            VoxelInfo raycast = null;
+            BlockInfo raycast = null;
             if(!hitInfo.Key)
             {
                 return;

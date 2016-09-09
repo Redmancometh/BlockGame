@@ -1,27 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Boo.Lang;
+using System.Collections.Generic;
+using System;
 
-namespace StarColony
+namespace Colonist
 {
     public abstract class Entity : MonoBehaviour
     {
         public enum EntityState { ATTACKING, BLOCKING, DODGING, FALLING, DEAD, ALIVE, RUNNING, WALKING };
         public List<EntityState> stateList = new List<EntityState>();
 
-        public void Start()
+        virtual public void  iterateStates(Action<EntityState> action)
         {
-
+            stateList.ForEach((state)=>action.Invoke(state));
         }
 
-        public void addState(EntityState state)
+        virtual public void addState(EntityState state)
         {
-
+            stateList.Add(state);
         }
 
-        public void removeState(EntityState state)
+        virtual public void removeState(EntityState state)
         {
-
+            stateList.Add(state);
         }
 
         public abstract string getName();

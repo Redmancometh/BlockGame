@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using StarColony;
-
+﻿using Colonist;
+using UnityEngine;
 public class VoxelManager
 {
 
@@ -14,7 +12,7 @@ public class VoxelManager
         return false;
     }
     // a raycast which returns the index of the hit voxel and the gameobject of the hit chunk
-    public VoxelInfo MasterRaycast(RaycastHit hit, Vector3 origin, Vector3 direction, float range, bool ignoreTransparent)
+    public BlockInfo MasterRaycast(RaycastHit hit, Vector3 origin, Vector3 direction, float range, bool ignoreTransparent)
     {
         if (raycastHasVoxel(hit))
         { // check if we're actually hitting a chunk
@@ -33,17 +31,17 @@ public class VoxelManager
     public void swapMesh(GameObject hitObject)
     {
         if (hitObject.GetComponent<ChunkExtension>() != null)
-        { 
+        {
             // if we hit a mesh container instead of a chunk
             // swap the mesh container for the actual chunk object
-            hitObject = hitObject.transform.parent.gameObject; 
+            hitObject = hitObject.transform.parent.gameObject;
         }
     }
 
-    public VoxelInfo getVoxelInfo(RaycastHit hit, float range, bool ignoreTransparent)
+    public BlockInfo getVoxelInfo(RaycastHit hit, float range, bool ignoreTransparent)
     {
         if (raycastHasVoxel(hit))
-        { 
+        {
             // check if we're actually hitting a chunk
             GameObject hitObject = hit.collider.gameObject;
             if (hitObject.GetComponent<ChunkExtension>() != null)

@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-namespace StarColony
+namespace Colonist
 {
     public abstract class SentientEntity : LivingEntity, ConversableEntity
     {

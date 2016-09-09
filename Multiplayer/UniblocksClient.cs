@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace StarColony {
+namespace Colonist {
 
 public class UniblocksClient : MonoBehaviour {
 		
@@ -44,7 +44,7 @@ public class UniblocksClient : MonoBehaviour {
 	}
 	
 	
-	public void SendPlaceBlock ( VoxelInfo info, ushort data ) {	// sends a voxel change to the server, which then redistributes it to other clients
+	public void SendPlaceBlock ( BlockInfo info, ushort data ) {	// sends a voxel change to the server, which then redistributes it to other clients
 		
 		// convert to ints
 		int chunkx = info.chunk.ChunkIndex.x;
@@ -60,7 +60,7 @@ public class UniblocksClient : MonoBehaviour {
 		}
 	}
 	
-	public void SendChangeBlock ( VoxelInfo info, ushort data ) {
+	public void SendChangeBlock ( BlockInfo info, ushort data ) {
 	
 		// convert to ints
 		int chunkx = info.chunk.ChunkIndex.x;
@@ -84,14 +84,14 @@ public class UniblocksClient : MonoBehaviour {
 		
 			// convert back to VoxelInfo
 			Index voxelIndex = new Index (x,y,z);
-			VoxelInfo info = new VoxelInfo (voxelIndex, chunkObject.GetComponent<Chunk>());
+			BlockInfo info = new BlockInfo (voxelIndex, chunkObject.GetComponent<Chunk>());
 			
 			// apply change
 			if (data == 0) {
-				Block.DestroyBlockMultiplayer (info, sender);
+				Voxel.DestroyBlockMultiplayer (info, sender);
 			}
 			else {
-				Block.PlaceBlockMultiplayer (info, (ushort)data, sender);
+				Voxel.PlaceBlockMultiplayer (info, (ushort)data, sender);
 			}
 		}
 	}
@@ -104,10 +104,10 @@ public class UniblocksClient : MonoBehaviour {
 		
 			// convert back to VoxelInfo
 			Index voxelIndex = new Index (x,y,z);
-			VoxelInfo info = new VoxelInfo (voxelIndex, chunkObject.GetComponent<Chunk>());
+			BlockInfo info = new BlockInfo (voxelIndex, chunkObject.GetComponent<Chunk>());
 			
 			// apply change
-			Block.ChangeBlockMultiplayer (info, (ushort)data, sender);
+			Voxel.ChangeBlockMultiplayer (info, (ushort)data, sender);
 		}
 	}
 	

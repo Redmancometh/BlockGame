@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-namespace StarColony {
+namespace Colonist {
 
 public class VoxelGrass : DefaultVoxelEvents  {
 
-	public override void OnBlockPlace ( VoxelInfo voxelInfo ) {
+	public override void OnBlockPlace ( BlockInfo voxelInfo ) {
 		
 		// switch to dirt if the block above isn't 0
 		Index adjacentIndex = voxelInfo.chunk.GetAdjacentIndex (voxelInfo.index, Direction.up);

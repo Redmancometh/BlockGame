@@ -3,7 +3,7 @@ using System.Collections;
 
 // keyboard shortcuts for some common tasks, and saving the world periodically
 
-namespace StarColony {
+namespace Colonist {
 
 public class Debugger : MonoBehaviour {
 	

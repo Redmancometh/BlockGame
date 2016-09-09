@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
-namespace StarColony {
+namespace Colonist {
 
 public class EngineSettings : EditorWindow {
 

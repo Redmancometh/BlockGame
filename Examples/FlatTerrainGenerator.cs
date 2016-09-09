@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace StarColony {
+namespace Colonist {
 
 public class FlatTerrainGenerator : TerrainGenerator { // generates a flat terrain
 

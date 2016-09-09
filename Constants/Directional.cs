@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace StarColony
+namespace Colonist
 {
     public enum Facing
     {

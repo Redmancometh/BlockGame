@@ -3,7 +3,7 @@ using System.Collections;
 
 // stores the currently held block, and switches it with 1-9 keys
 
-namespace StarColony
+namespace Colonist
 {
     public class ExampleInventory : MonoBehaviour
     {

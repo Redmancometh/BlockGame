@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace StarColony {
+namespace Colonist {
 [RequireComponent(typeof(UniblocksClient))]
 public class UniblocksServer : MonoBehaviour {
 	

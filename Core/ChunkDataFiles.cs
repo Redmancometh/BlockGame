@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 
 
-namespace StarColony {
+namespace Colonist {
 
 public class ChunkDataFiles : MonoBehaviour {
 		

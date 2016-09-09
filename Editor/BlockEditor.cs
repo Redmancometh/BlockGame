@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace StarColony {
+namespace Colonist {
 
 public class BlockEditor : EditorWindow {
 	
@@ -95,7 +95,7 @@ public class BlockEditor : EditorWindow {
 					EditorGUILayout.BeginHorizontal();
 					GUILayout.Label (i.ToString());
 					
-					Block voxel = block.GetComponent<Block>();
+					Voxel voxel = block.GetComponent<Voxel>();
 					
 					// selected button
 					if (SelectedPrefab != null && block.name == SelectedPrefab.name) {
@@ -134,7 +134,7 @@ public class BlockEditor : EditorWindow {
 			
 			
 			if (SelectedBlock != null) {
-				Block selectedVoxel = SelectedBlock.GetComponent<Block>();
+				Voxel selectedVoxel = SelectedBlock.GetComponent<Voxel>();
 				
 				// name
 				selectedVoxel.VName = EditorGUILayout.TextField("Name", selectedVoxel.VName);
@@ -197,7 +197,7 @@ public class BlockEditor : EditorWindow {
 				
 				GUILayout.Label ("Components");
 				foreach (Object component in SelectedBlock.GetComponents<Component>()) {
-					if (component is Transform == false && component is Block == false) {
+					if (component is Transform == false && component is Voxel == false) {
 						GUILayout.Label (component.GetType().ToString());
 					}
 					
@@ -210,7 +210,7 @@ public class BlockEditor : EditorWindow {
 				if (GUILayout.Button("Apply", GUILayout.Height(80))) {
 					
 					if (SelectedPrefab != null 
-					    && SelectedPrefab.GetComponent<Block>().GetID() != selectedVoxel.GetID() // if id was changed
+					    && SelectedPrefab.GetComponent<Voxel>().GetID() != selectedVoxel.GetID() // if id was changed
 					    && GetBlock(selectedVoxel.GetID()) != null ){ // and there is already a block with this id
 						
 						ReplaceBlockDialog = true;	
@@ -229,7 +229,7 @@ public class BlockEditor : EditorWindow {
 				
 				
 				if (ReplaceBlockDialog) {
-					GUILayout.Label ("A block with this ID already exists!"+SelectedPrefab.GetComponent<Block>().GetID()+selectedVoxel.GetID());
+					GUILayout.Label ("A block with this ID already exists!"+SelectedPrefab.GetComponent<Voxel>().GetID()+selectedVoxel.GetID());
 				}
 				
 				
@@ -286,7 +286,7 @@ public class BlockEditor : EditorWindow {
 	
 	private void UpdateBlock ( ) { // replaces selected block prefab with the scene instance (also sets the prefab name)
 
-		SelectedBlock.name = "block_" + SelectedBlock.GetComponent<Block>().GetID();
+		SelectedBlock.name = "block_" + SelectedBlock.GetComponent<Voxel>().GetID();
 		GameObject newPrefab = PrefabUtility.CreatePrefab(GetPrefabPath(SelectedBlock), SelectedBlock);
 		SelectedPrefab = newPrefab;
 
@@ -345,7 +345,7 @@ public class BlockEditor : EditorWindow {
 			return null;
 		}
 			
-		if (block != null && block.GetComponent<Block>() != null) {	
+		if (block != null && block.GetComponent<Voxel>() != null) {	
 			return block;			
 		}
 		else {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-namespace StarColony
+namespace Colonist
 {
     public class MasterEngine : MonoBehaviour
     {
@@ -177,7 +177,7 @@ namespace StarColony
 
                 if (Blocks[i] != null)
                 {
-                    Block voxel = Blocks[i].GetComponent<Block>();
+                    Voxel voxel = Blocks[i].GetComponent<Voxel>();
 
                     if (voxel.VSubmeshIndex < 0)
                     {
@@ -234,7 +234,7 @@ namespace StarColony
                 Debug.Break();
                 return false;
             }
-            else if (Blocks[0].GetComponent<Block>() == null)
+            else if (Blocks[0].GetComponent<Voxel>() == null)
             {
                 Debug.LogError("StarColony: Voxel id 0 does not have the Voxel component attached!");
                 Debug.Break();
@@ -301,7 +301,7 @@ namespace StarColony
             {
                 if (voxelId == ushort.MaxValue) voxelId = 0;
                 GameObject voxelObject = Blocks[voxelId];
-                if (voxelObject.GetComponent<Block>() == null)
+                if (voxelObject.GetComponent<Voxel>() == null)
                 {
                     Debug.LogError("StarColony: Voxel id " + voxelId + " does not have the Voxel component attached!");
                     return Blocks[0];
@@ -319,12 +319,12 @@ namespace StarColony
             }
         }
 
-        public Block GetVoxelType(ushort voxelId)
+        public Voxel GetVoxelType(ushort voxelId)
         {
             try
             {
                 if (voxelId == ushort.MaxValue) voxelId = 0;
-                Block voxel = Blocks[(int)voxelId].GetComponent<Block>();
+                Voxel voxel = Blocks[(int)voxelId].GetComponent<Voxel>();
                 if (voxel == null)
                 {
                     Debug.LogError("StarColony: Voxel id " + voxelId + " does not have the Voxel component attached!");
@@ -390,14 +390,14 @@ namespace StarColony
 
         }
 
-        public VoxelInfo PositionToVoxelInfo(Vector3 position)
+        public BlockInfo PositionToVoxelInfo(Vector3 position)
         {
             GameObject chunkObject = PositionToChunk(position);
             if (chunkObject != null)
             {
                 Chunk chunk = chunkObject.GetComponent<Chunk>();
                 Index voxelIndex = chunk.PositionToVoxelIndex(position);
-                return new VoxelInfo(voxelIndex, chunk);
+                return new BlockInfo(voxelIndex, chunk);
             }
             else
             {
@@ -405,7 +405,7 @@ namespace StarColony
             }
         }
 
-        public Vector3 VoxelInfoToPosition(VoxelInfo voxelInfo)
+        public Vector3 VoxelInfoToPosition(BlockInfo voxelInfo)
         {
             return voxelInfo.chunk.GetComponent<Chunk>().VoxelIndexToPosition(voxelInfo.index);
         }
@@ -417,7 +417,7 @@ namespace StarColony
 
         public Vector2 GetTextureOffset(ushort voxel, Facing facing)
         {
-            Block voxelType = GetVoxelType(voxel);
+            Voxel voxelType = GetVoxelType(voxel);
             Vector2[] textureArray = voxelType.VTexture;
             if (textureArray.Length == 0)
             { // in case there are no textures defined, return a default texture

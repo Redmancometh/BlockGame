@@ -3,7 +3,7 @@ using System.Collections;
 
 // Triggers chunk spawning around the player.
 
-namespace StarColony {
+namespace Colonist {
 
 public class ChunkLoader : MonoBehaviour {
 

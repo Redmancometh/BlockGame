@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 // Handles mesh creation and all related functions.
 
-namespace StarColony {
+namespace Colonist {
 
 public enum MeshRotation {
 	none, back, left, right
@@ -75,7 +75,7 @@ public class ChunkMeshCreator : MonoBehaviour {
 					ushort voxel = chunk.GetVoxel(x,y,z); // the current voxel data
 					if ( voxel != 0 ) { // don't render empty blocks.
 					
-						Block voxelType = MasterEngine.getInstance().GetVoxelType(voxel);
+						Voxel voxelType = MasterEngine.getInstance().GetVoxelType(voxel);
 						if ( voxelType.VCustomMesh == false ) { // if cube
 							
 							//Transparency transparency = Engine.GetVoxelType (chunk.GetVoxel(x,y,z)).VTransparency;
@@ -173,7 +173,7 @@ public class ChunkMeshCreator : MonoBehaviour {
 	
 	private void CreateFace ( ushort voxel, Facing facing, ColliderType colliderType, int x, int y, int z ) { 
 		
-		Block voxelComponent = MasterEngine.getInstance().GetVoxelType (voxel);
+		Voxel voxelComponent = MasterEngine.getInstance().GetVoxelType (voxel);
 		List<int> FacesList = Faces[voxelComponent.VSubmeshIndex];
 		
 		// ==== Vertices ====
@@ -294,7 +294,7 @@ public class ChunkMeshCreator : MonoBehaviour {
 	
 	private void CreateCustomMesh (ushort voxel, int x, int y, int z, Mesh mesh) {
 		
-		Block voxelComponent = MasterEngine.getInstance().GetVoxelType(voxel);
+		Voxel voxelComponent = MasterEngine.getInstance().GetVoxelType(voxel);
 		List<int> FacesList = Faces[voxelComponent.VSubmeshIndex];
 		
 		// check if mesh exists

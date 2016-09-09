@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace StarColony {
+namespace Colonist {
 
 public class ColliderEventsSender : MonoBehaviour {
 		
@@ -17,7 +17,7 @@ public class ColliderEventsSender : MonoBehaviour {
 		// get the voxelInfo from the transform's position
 		Chunk chunk = chunkObject.GetComponent<Chunk>();
 		Index voxelIndex = chunk.PositionToVoxelIndex (transform.position);
-		VoxelInfo voxelInfo = new VoxelInfo (voxelIndex, chunk);
+		BlockInfo voxelInfo = new BlockInfo (voxelIndex, chunk);
 		
 		// create a local copy of the collision voxel so we can call functions on it
 		GameObject voxelObject = Instantiate ( MasterEngine.getInstance().GetVoxelGameObject (voxelInfo.GetVoxel()) ) as GameObject;

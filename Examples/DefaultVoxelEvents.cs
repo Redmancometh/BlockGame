@@ -3,27 +3,27 @@ using System.Collections;
 
 // inherit from this class if you want to use the default events as well as custom ones
 
-namespace StarColony
+namespace Colonist
 {
     public class DefaultVoxelEvents : VoxelEvents
     {
-        public override void OnMouseDown(int mouseButton, VoxelInfo voxelInfo)
+        public override void OnMouseDown(int mouseButton, BlockInfo voxelInfo)
         {
             if (mouseButton == 0)
             {
-                Block.DestroyBlock(voxelInfo);
+                Voxel.DestroyBlock(voxelInfo);
                 return;
             }
             if (voxelInfo.GetVoxel() == 8)
             {
-                Block.PlaceBlock(voxelInfo, ExampleInventory.HeldBlock);
+                Voxel.PlaceBlock(voxelInfo, ExampleInventory.HeldBlock);
                 return;
             }
-            VoxelInfo newInfo = new VoxelInfo(voxelInfo.adjacentIndex, voxelInfo.chunk); // use adjacentIndex to place the block
-            Block.PlaceBlock(newInfo, ExampleInventory.HeldBlock);
+            BlockInfo newInfo = new BlockInfo(voxelInfo.adjacentIndex, voxelInfo.chunk); // use adjacentIndex to place the block
+            Voxel.PlaceBlock(newInfo, ExampleInventory.HeldBlock);
         }
 
-        public override void OnLook(VoxelInfo voxelInfo)
+        public override void OnLook(BlockInfo voxelInfo)
         {
 
             // move the selected block ui to the block that's being looked at (convert the index of the hit voxel to absolute world position)
@@ -37,7 +37,7 @@ namespace StarColony
             blockSelection.transform.rotation = voxelInfo.chunk.transform.rotation;
         }
 
-        public override void OnBlockPlace(VoxelInfo voxelInfo)
+        public override void OnBlockPlace(BlockInfo voxelInfo)
         {
 
             // if the block below is grass, change it to dirt
@@ -50,7 +50,7 @@ namespace StarColony
             }
         }
 
-        public override void OnBlockDestroy(VoxelInfo voxelInfo)
+        public override void OnBlockDestroy(BlockInfo voxelInfo)
         {
             // if the block above is tall grass, destroy it
             Index indexAbove = new Index(voxelInfo.index.x, voxelInfo.index.y + 1, voxelInfo.index.z);
@@ -60,7 +60,7 @@ namespace StarColony
             }
         }
 
-        public override void OnBlockEnter(GameObject enteringObject, VoxelInfo voxelInfo)
+        public override void OnBlockEnter(GameObject enteringObject, BlockInfo voxelInfo)
         {
             Debug.Log("OnBlockEnter at " + voxelInfo.chunk.ChunkIndex.ToString() + " / " + voxelInfo.index.ToString());
         }

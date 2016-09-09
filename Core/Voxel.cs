@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-namespace StarColony
+namespace Colonist
 {
 
-    public class Block : MonoBehaviour
+    public class Voxel : MonoBehaviour
     {
 
         public string VName;
@@ -22,7 +22,7 @@ namespace StarColony
             return MasterEngine.getInstance().GetVoxelGameObject(id);
         }
 
-        public static void DestroyBlock(VoxelInfo voxelInfo)
+        public static void DestroyBlock(BlockInfo voxelInfo)
         {
 
             // multiplayer - send change to server
@@ -44,7 +44,7 @@ namespace StarColony
             }
         }
 
-        public static void PlaceBlock(VoxelInfo voxelInfo, ushort data)
+        public static void PlaceBlock(BlockInfo voxelInfo, ushort data)
         {
 
             // multiplayer - send change to server
@@ -67,7 +67,7 @@ namespace StarColony
             }
         }
 
-        public static void ChangeBlock(VoxelInfo voxelInfo, ushort data)
+        public static void ChangeBlock(BlockInfo voxelInfo, ushort data)
         {
 
             // multiplayer - send change to server
@@ -92,7 +92,7 @@ namespace StarColony
 
         // multiplayer
 
-        public static void DestroyBlockMultiplayer(VoxelInfo voxelInfo, NetworkPlayer sender)
+        public static void DestroyBlockMultiplayer(BlockInfo voxelInfo, NetworkPlayer sender)
         { // received from server, don't use directly
 
             GameObject voxelObject = Instantiate(getVoxelGameObject(voxelInfo.GetVoxel())) as GameObject;
@@ -106,7 +106,7 @@ namespace StarColony
             Destroy(voxelObject);
         }
 
-        public static void PlaceBlockMultiplayer(VoxelInfo voxelInfo, ushort data, NetworkPlayer sender)
+        public static void PlaceBlockMultiplayer(BlockInfo voxelInfo, ushort data, NetworkPlayer sender)
         { // received from server, don't use directly
 
             voxelInfo.chunk.SetVoxel(voxelInfo.index, data, true);
@@ -121,7 +121,7 @@ namespace StarColony
             Destroy(voxelObject);
         }
 
-        public static void ChangeBlockMultiplayer(VoxelInfo voxelInfo, ushort data, NetworkPlayer sender)
+        public static void ChangeBlockMultiplayer(BlockInfo voxelInfo, ushort data, NetworkPlayer sender)
         { // received from server, don't use directly
 
             voxelInfo.chunk.SetVoxel(voxelInfo.index, data, true);

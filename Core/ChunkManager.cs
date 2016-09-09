@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 // Controls spawning and destroying chunks.
 
-namespace StarColony {
+namespace Colonist {
 
 public class ChunkManager : MonoBehaviour {
 		

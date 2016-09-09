@@ -66,9 +66,7 @@ public class KeyPoller
         {
             GameObject obj = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Goblins/GoblinA"));
             obj.transform.position = Camera.main.transform.position;
-            GameObject melter = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Shaders/LitVertexDisplacement/GoblinA"));
-
-            Debug.Log(obj.GetType());
+            Renderer rend = obj.GetComponentInChildren<MeshRenderer>();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -69,25 +69,19 @@ namespace Colonist
 
         public static void ChangeBlock(BlockInfo voxelInfo, ushort data)
         {
-
             // multiplayer - send change to server
             if (MasterEngine.getInstance().EnableMultiplayer)
             {
                 MasterEngine.getInstance().UniblocksNetwork.GetComponent<UniblocksClient>().SendChangeBlock(voxelInfo, data);
+                return;
             }
-
-            // single player - apply change locally
-            else
+            voxelInfo.chunk.SetVoxel(voxelInfo.index, data, true);
+            GameObject voxelObject = Instantiate(getVoxelGameObject(data)) as GameObject;
+            if (voxelObject.GetComponent<VoxelEvents>() != null)
             {
-                voxelInfo.chunk.SetVoxel(voxelInfo.index, data, true);
-
-                GameObject voxelObject = Instantiate(getVoxelGameObject(data)) as GameObject;
-                if (voxelObject.GetComponent<VoxelEvents>() != null)
-                {
-                    voxelObject.GetComponent<VoxelEvents>().OnBlockChange(voxelInfo);
-                }
-                Destroy(voxelObject);
+                voxelObject.GetComponent<VoxelEvents>().OnBlockChange(voxelInfo);
             }
+            Destroy(voxelObject);
         }
 
         // multiplayer
@@ -141,7 +135,6 @@ namespace Colonist
         public ushort GetID()
         {
             return ushort.Parse(this.gameObject.name.Split('_')[1]);
-
         }
 
         public void SetID(ushort id)
